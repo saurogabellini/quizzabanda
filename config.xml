@@ -36,7 +36,7 @@
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
     <plugin name="cordova-plugin-vibration" />
     <plugin name="cordova-plugin-insomnia" />
-    <plugin name="cordova-plugin-file-transfer" />
+
     
 	<access origin="*" />
 </widget>
