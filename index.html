@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>
+      QuizzaBanda
+    </title>
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/keyframes.css" rel="stylesheet" type="text/css">
+    <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="phonegap.js"></script>
+<style>
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat-Regular'), url('fonts/materialdesignicons-webfont.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat-Bold'), url('fonts/materialdesignicons-webfontbold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+</style>
+  </head>
+  <body>
+
+    <!-- Modal -->
+    <div class="modal bottom-sheet features" id="modal1">
+
+      <div class="modal-content">
+        <div class="row">
+          <div class="col s3">
+            <a href="profile.html"><i class="close-opacity mdi mdi-account"></i></a>
+            <p>
+              About
+            </p>
+          </div>
+          <div class="col s3">
+            <a href="portfolio.html"><i class="mdi mdi-file-image-box"></i></a>
+            <p>
+              Photos
+            </p>
+          </div>
+          <div class="col s3">
+            <a href="blog.html"><i class="mdi mdi-book-multiple-variant"></i></a>
+            <p>
+              Blog
+            </p>
+          </div>
+          <div class="col s3">
+            <a href="news.html"><i class="mdi mdi-rss"></i></a>
+            <p>
+              News
+            </p>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div> <!-- End of Modal -->
+
+    <div class="m-scene" id="main"> <!-- Page Container -->
+
+      <!-- Sidebars -->
+      <div class="snap-drawers">
+
+        <!-- Left Sidebar -->
+        <div class="snap-drawer snap-drawer-left">
+          <div class="drawer-inner">
+            <ul>
+              <li><a href="index.html"><i class="mdi mdi-home"></i> <span>Home</span></a></li>              
+              <li><a href="regole.html"><i class="mdi mdi-book-open"></i> <span>Regole</span></a></li>                          
+              </ul>
+
+            <ul class="exit">
+              <li>
+                <a href="logout.html"><i class="mdi mdi-exit-to-app"></i> <span>Logout</span></a>
+              </li>
+            </ul>
+          </div>
+        </div> <!-- End of Left Sidebar -->
+      </div> <!-- End of Sidebars -->
+
+      <!-- Page Content -->
+      <div class="snap-content z-depth-5" id="content">
+
+        <!-- Toolbar -->
+        <div id="toolbar">
+          <div class="open-left" id="open-left">
+            <i class="mdi mdi-sort-variant"></i>
+          </div>
+          <span class="title">QuizzaBanda</span>
+          
+        </div>
+
+        <!-- Main Content -->
+        <div class="scene_element splash scene_element--fadeinup">
+          
+          <!-- Gradient -->
+            <div class="profile-header" id="myprofile">
+              <img alt="" src="img/star.png">
+            <div class="">
+            </div>
+            <div class="contact profile-user">
+              <img src="img/star.png"   id="logosquadra" style="visibility:hidden;"/>                            
+                <h5 class="black-text"  id="nomesquadra">                
+              </h5>
+            </div>
+          </div>
+
+          
+          
+
+          <div class="bottom">
+            <div class="container scene_element scene_element--fadein scene_element--delayed">
+     
+              <a class="btn-large waves-effect waves-light primary-color-text primary-border transparent  fullwidth z-depth-1" rel="external" href="gioca.html">GIOCA</a>
+            </div>
+          </div>
+
+        </div> <!-- End of Main Contents -->
+        <div id="blockui"></div>
+      </div> <!-- End of Page Content -->
+    </div> <!-- End of Page Container -->
+
+    <script src="js/jquery-2.1.4.min.js"></script> 
+    <script type="text/javascript">           
+      $('.splash').each(function(){    
+        $(this).css('max-height', document.documentElement.clientHeight-56);
+        $(this).css('min-height', document.documentElement.clientHeight-56);
+      });
+      $('.bottom').each(function(){            
+        $(this).css('top', document.documentElement.clientHeight-114-56);        
+      });        
+
+
+    </script>
+    <script src="js/materialize.min.js"></script> 
+    <script src="js/snap.js"></script>     
+    <script src="js/jquery.smoothState.min.js"></script> 
+    <script src="js/sidebar.js"></script> 
+    <script src="js/functions.js"></script>
+    <script type="text/javascript">
+  
+
+    </script>
+  </body>
+</html>

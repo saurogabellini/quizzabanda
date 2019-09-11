@@ -1,0 +1,197 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Chi Vuol Esser Sarabanda</title> 
+
+<meta name="description" content="">
+<meta name="keyword" content="">     
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<!-- Javascripts -->
+<script src="assets/js/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="assets/css/jquery.mobile-1.4.4.min.css" />
+<script src="assets/js/jquery.mobile-1.4.4.min.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="../cordova.js"></script> 
+<script src="JSErrore.js"></script>
+<script src="checkcambiodomanda.js"></script>
+<style>
+
+<!-- / Javascripts -->
+body {
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;	
+}
+
+.ui-page { background: #000000;}
+</style>
+
+
+<script  type="text/javascript">
+	var serverip = localStorage.getItem("serverip");
+	var RicezioneOk = 0;
+	
+    function mYclick(tasto) {
+
+		if (RicezioneOk == 1) {
+            return false;
+        }
+        RicezioneOk = 1;
+		
+        var login = "";
+		
+        login = localStorage.getItem("login");
+
+
+        var uri = 'http://' + serverip + '/new_assegnarispostav.ashx?Risposta=' + tasto + '&Squadra=' + login;
+
+
+        $.ajax({
+            cache: false,
+            //type: "POST",
+            timeout: 3000,
+            dataType: "text",
+            // beforeSend: function(x) {
+            //     if (x && x.overrideMimeType) {
+            //         x.overrideMimeType("application/json;charset=UTF-8");
+            //     }
+            // },
+            url: uri,
+            success: function(data) {
+					RicezioneOk = 0;
+                    if (tasto == 'A') {
+                        $("#ImgA").attr('src','assets/images/icons/ADown.png');
+                        setTimeout(function () { $("#ImgA").attr('src','assets/images/icons/AUp.png'); },200);
+                    }
+                    if (tasto == 'B') {
+                        $("#ImgB").attr('src','assets/images/icons/BDown.png');
+                        setTimeout(function () { $("#ImgB").attr('src','assets/images/icons/BUp.png'); },200);
+                    }
+                    if (tasto == 'C') {
+                        $("#ImgC").attr('src','assets/images/icons/CDown.png');
+                        setTimeout(function () { $("#ImgC").attr('src','assets/images/icons/CUp.png'); },200);
+                    }
+                    if (tasto == 'D') {
+                        $("#ImgD").attr('src','assets/images/icons/DDown.png');
+                        setTimeout(function () { $("#ImgD").attr('src','assets/images/icons/DUp.png'); },200);
+                    }
+                    if (tasto == 'E') {
+                        $("#ImgE").attr('src','assets/images/icons/EDown.png');
+                        setTimeout(function () { $("#ImgE").attr('src','assets/images/icons/EUp.png'); },200);
+                    }
+					if (tasto == 'F') {
+                        $("#ImgF").attr('src','assets/images/icons/FDown.png');
+                        setTimeout(function () { $("#ImgF").attr('src','assets/images/icons/FUp.png'); },200);
+                    }
+					
+					
+					if ($("#statusicon").attr('src') == 'assets/images/error.png') {
+						$("#statusicon").attr('src','assets/images/ok.png');
+                        $("#statoconnessione").html("Connesso...");
+					}
+					if (data == "RS") {
+                        VisualizzaErrore('RISPOSTO');
+                    }
+
+					navigator.vibrate(250);					
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+					RicezioneOk = 0;
+                    $("#statoconnessione").html("ERRORE CONNESSIONE");
+					$("#statusicon").attr('src','assets/images/error.png');
+		
+                //alert(textStatus + ', ' + errorThrown + ':\n' + jqXHR.responseText);
+            }
+        });
+    }
+
+    $(document).ready(function() {  
+		RicezioneOk = 0;
+		CambioPagina('6');
+		
+		$("#ImgA").on("tap",function(){		    
+			mYclick('A');
+		});
+		$("#ImgB").on("tap",function(){			
+			mYclick('B');
+		});
+		$("#ImgC").on("tap",function(){
+			mYclick('C');
+		});
+		$("#ImgD").on("tap",function(){
+			mYclick('D');
+		});	
+		$("#ImgE").on("tap",function(){
+			mYclick('E');
+		});
+		$("#ImgF").on("tap",function(){
+			mYclick('F');
+		});			
+		
+		$("#statusicon").on("tap", function () {
+		    VerificaPaginaServer('6');
+		});		
+    });
+	
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {        
+		// Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+    // Handle the back button
+    //
+    function onBackKeyDown() {
+	  alert('Stai giocando non puoi uscire!');
+    }
+
+</script>
+
+</head>
+<body bgcolor="#000000">
+<div data-role="page"  data-title="6 Tasti">
+<img id="statusicon" src="assets/images/ok.png" style="position:absolute; right:50px;top:2%;">
+
+
+<img src="assets/images/icons/AUp.png" id="ImgA" alt="img" style="position:absolute; top:10%; left:2%; height:25%;">
+
+
+<img src="assets/images/icons/BUp.png" id="ImgB" alt="img"  style="position:absolute; top:10%; right:2%; height:25%;">
+
+
+
+<img src="assets/images/icons/CUp.png" id="ImgC" alt="img" style="position:absolute; top:38%; left:2%; height:25%;">
+
+
+<img src="assets/images/icons/DUp.png" id="ImgD" alt="img" style="position:absolute; top:38%; right:2%; height:25%;">
+
+
+
+<img src="assets/images/icons/EUp.png" id="ImgE" alt="img" style="position:absolute; top:66%; left:2%; height:25%;">
+
+
+<img src="assets/images/icons/FUp.png" id="ImgF" alt="img" style="position:absolute; top:66%; right:2%; height:25%;">
+
+<div data-role="footer" data-position="fixed" style="background-color:red; height:20px;">
+    <span id="statoconnessione" style="color:white; font-size:small;font-weight:0;">Connesso...</span>
+</div>
+</div>
+
+
+</body>
+</html>

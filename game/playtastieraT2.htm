@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Chi Vuol Esser Sarabanda</title> 
+
+<meta name="description" content="">
+<meta name="keyword" content="">     
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+<!-- Javascripts -->
+
+<!-- Javascripts -->
+<script src="assets/js/jquery.1.7.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../cordova.js"></script> 
+<script src="JSErrore.js"></script>
+<script src="checkcambiodomanda.js"></script>
+<style>
+
+<!-- / Javascripts -->
+body {
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+.loginbox {		
+	margin-left: 10%;
+	width: 80%;
+	height: 180px;
+	border: 0px rgb(89,89,89) solid;
+	background: rgb(255,255,255);
+	-moz-box-shadow:  5px 6px 7px 4px rgb(128,128,128);
+	-webkit-box-shadow:  5px 6px 7px 4px rgb(128,128,128);
+	box-shadow:  5px 6px 7px 4px rgb(128,128,128);
+}
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;	
+}
+.myButton {
+	background-color:#20B2AA !important;
+	
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:17px;
+	padding:14px 65px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+	width:40%;
+	margin-top: 40px;
+
+}
+.myButton:hover {
+	background-color:#5cbf2a;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+.ui-page { background: #000000;}
+</style>
+
+
+<script  type="text/javascript">
+	var serverip = localStorage.getItem("serverip");
+	var RicezioneOk = 0;
+	
+    function mYclick() {
+	
+		if (RicezioneOk == 1) {
+            return false;
+        }
+        RicezioneOk = 1;
+		
+		var tasto ="";
+        var login = "";
+				       
+		
+        login = localStorage.getItem("login");
+
+		var appoggio = $("#TxtRisposta").val();		
+
+		tasto = appoggio.toUpperCase();
+		
+		appoggio="";
+		for (i=0; i< tasto.length; i++)
+			{
+				var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
+
+				if (englishAlphabetAndWhiteSpace.test(tasto.charAt(i))) {
+	        		appoggio = appoggio + tasto.charAt(i);
+	    		}
+		}
+
+		appoggio = appoggio + '|';
+
+		tasto = $("#TxtRisposta2").val();
+		
+		tasto = tasto.toUpperCase();
+
+		for (i=0; i< tasto.length; i++)
+		{
+				var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
+
+				if (englishAlphabetAndWhiteSpace.test(tasto.charAt(i))) {
+	        		appoggio = appoggio + tasto.charAt(i);
+	    		}
+		}
+
+		tasto=appoggio;
+											
+        var uri = 'http://' + serverip + '/new_assegnarispostav.ashx?Risposta=' + tasto + '&Squadra=' + login;
+
+
+        $.ajax({
+            cache: false,
+            //type: "POST",
+            dataType: "text",
+            // beforeSend: function(x) {
+            //     if (x && x.overrideMimeType) {
+            //         x.overrideMimeType("application/json;charset=UTF-8");
+            //     }
+            // },
+            url: uri,
+            success: function(data) {
+				RicezioneOk = 0;
+       			if (data == "RS") {
+					VisualizzaErrore('RISPOSTO');
+					$("#TxtRisposta").val("");
+					$("#TxtRisposta2").val("");
+				}
+				navigator.vibrate(250);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+				RicezioneOk = 0;
+				$("#statusicon").attr('src','assets/images/error.png');
+				$("#statoconnessione").html("ERRORE CONNESSIONE");
+                //alert(textStatus + ', ' + errorThrown + ':\n' + jqXHR.responseText);
+            }
+        });
+    }
+
+    $(document).ready(function() {  
+		RicezioneOk = 0;
+		CambioPagina('T2');
+		
+		
+		$("#statusicon").on("tap", function () {
+		    VerificaPaginaServer('T2');
+		});		
+
+		// $("#TxtRisposta").on("keydown", function(event) {
+
+	 //    // Disallow anything not matching the regex pattern (A to Z uppercase, a to z lowercase and white space)
+	 //    // For more on JavaScript Regular Expressions, look here: https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions
+	 //    var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
+	   
+	 //    // Retrieving the key from the char code passed in event.which
+	 //    // For more info on even.which, look here: http://stackoverflow.com/q/3050984/114029
+	 //    var key = String.fromCharCode(event.which);
+	    
+	 //    //alert(event.keyCode);
+	    
+	 //    // For the keyCodes, look here: http://stackoverflow.com/a/3781360/114029
+	 //    // keyCode == 8  is backspace
+	 //    // keyCode == 37 is left arrow
+	 //    // keyCode == 39 is right arrow
+	 //    // englishAlphabetAndWhiteSpace.test(key) does the matching, that is, test the key just typed against the regex pattern
+        
+  //       // event.keyCode == 39 || APICE DISATTIVATO
+  //       // event.keyCode == 37 || PERCENTUALE DISATTIVATA
+        
+	 //    if (event.keyCode == 8 ||   englishAlphabetAndWhiteSpace.test(key)) {
+	 //        return true;
+	 //    }
+
+	 //    // If we got this far, just return false because a disallowed key was typed.
+	 //    return false;
+		// });
+
+		// $('#TxtRisposta').on("paste",function(e)
+		// {
+	 //    e.preventDefault();
+		// });
+    });
+	
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
+    //
+    function onDeviceReady() {        
+		// Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+    // Handle the back button
+    //
+    function onBackKeyDown() {
+	  alert('Stai giocando non puoi uscire!');
+    }
+
+	function tastopremuto(tasto)
+	{
+		if (tasto == 'back') {
+			var appoggio = $("#Mylabel").html();
+			if (appoggio.length > 17) {
+				appoggio = appoggio.substring(0,appoggio.length -1);			
+				$("#Mylabel").html( appoggio );
+			}
+		} else
+		{
+			$("#Mylabel").html($("#Mylabel").html() + tasto);
+		}
+	}
+</script>
+
+</head>
+<body bgcolor="#000000">
+<div data-role="page"  data-title="6 Tasti">
+<img id="statusicon" src="assets/images/ok.png" style="position:absolute; right:50px;top:2%;">
+<br />
+<br />
+<br />
+<br />
+<div style="text-align:center; ">
+<img src="star.png" style="width:60%" alt="Chi vuol esser Sarabanda?">
+</div>
+<br />
+<br />
+<div style="text-align:center;">
+<div class="loginbox">
+<input id="TxtRisposta" type="text" placeholder="risposta 1" pattern="[A-Z]"  style="position:relative; width:95%; height:30px; top:20px; float:right; margin-right:2%; text-transform: uppercase;text-transform: uppercase;border-width: 0px;" /><br />
+<input id="TxtRisposta2" type="text" placeholder="risposta 2" pattern="[A-Z]"  style="position:relative; width:95%; height:30px; top:20px; float:right; margin-right:2%; text-transform: uppercase;text-transform: uppercase;border-width: 0px;" /><br />
+<div style="text-align:center; ">
+<a href="#" onclick=" mYclick();" class="myButton">
+Invia
+</a>
+</div>
+</div>
+<br />
+
+
+</div>
+
+</div>
+<div data-role="footer" data-position="fixed" style="background-color:red; height:20px; position:absolute;bottom:0px;width:100%;">
+	<span id="statoconnessione" style="color:white; font-size:small;font-weight:0;">Connesso...</span>
+</div>
+</body>
+</html>

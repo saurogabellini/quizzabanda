@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+  <head>
+    <title>
+      Quizzabanda
+    </title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="x-ua-compatible">
+    <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">    
+    <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/keyframes.css" rel="stylesheet" type="text/css">
+    <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+<style>
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat-Regular'), url('fonts/materialdesignicons-webfont.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Montserrat-Bold'), url('fonts/materialdesignicons-webfontbold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+</style>    
+  </head>
+  <body>
+    <div class="m-scene" id="main"> <!-- Page Container -->
+
+      <!-- Sidebars -->
+      <div class="snap-drawers">
+
+        <!-- Left Sidebar -->
+        <div class="snap-drawer snap-drawer-left">
+          <div class="drawer-inner">
+            <ul>
+              <li><a href="index.html"><i class="mdi mdi-home"></i> <span>Home</span></a></li>
+              <li><a href="regole.html"><i class="mdi mdi-book-open"></i> <span>Regole</span></a></li>
+              </ul>
+
+            <ul class="exit">
+              <li>
+                <a href="login.html"><i class="mdi mdi-exit-to-app"></i> <span>Logout</span></a>
+              </li>
+            </ul>
+          </div>
+        </div> <!-- End of Left Sidebar -->
+      </div> <!-- End of Sidebars -->
+      
+
+      <!-- Page Content -->
+      <div class="snap-content z-depth-5" id="content">
+
+        <!-- Toolbar -->
+        <div id="toolbar">
+          <div class="open-left" id="open-left">
+            <i class="mdi mdi-sort-variant"></i>
+          </div>
+          <span class="title">Regole</span>          
+        </div>
+
+        <div class="scene_element scene_element--fadeinup">
+          
+          <!-- Profile HEader -->
+          <div class="profile-header">
+            <img alt="" src="img/13.jpg">
+            <div class="overlay-gradient">
+            </div>
+            <div class="contact profile-user" style="bottom:0;">
+              <img alt="" src="img/user8.jpg">
+              <h4 class="white-text">
+                Quizzabanda
+              </h4>
+            </div>
+          </div>
+
+            
+
+            <div class="profile-description">
+              <h4 class="paragraph-title">
+                Regole
+              </h4>
+
+          <p>
+              <b>1)</b> È un gioco a squadre. <br/>
+              <b>2)</b> Ogni squadra può giocare con un dispositivo che abbia il sistema operativo Android, Ios o Windows Phone.<br/>
+              <b>3)</b> Per giocare basta scaricare dallo store l’applicazione Quizzabanda e loggarsi con il proprio codice personale.<br/>
+              <b>4)</b> Il gioco consiste nel rispondere ad alcune domande di cultura generale selezionando, sulla propria tastiera, quella corretta tra le opzioni che compaiono.<br/>
+              <b>5)</b> La squadra che risponde più velocemente delle altre guadagna 30 punti, la seconda 29 e così via a scalare. Se la squadra non risponde  correttamente alla domanda perde 5 punti. Se non risponde affatto il suo punteggio rimane invariato.<br/>
+              <b>6)</b> Le domande speciali hanno un calcolo di punteggio particolare che verrà spiegato durante lo svolgimento del gioco.
+            </p>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            </div>
+          </div>
+
+          
+          <!-- Footer -->
+          <div class="scene_element scene_element--fadeinup footer-copyright primary-color">
+            <div class="container">   
+            </div>
+          </div>
+
+        </div> <!-- End of Main Contents -->
+        <div id="blockui"></div>
+      </div> <!-- End of Page Content -->
+    </div> <!-- End of Page Container -->
+  
+    <script src="js/jquery-2.1.4.min.js"></script> 
+    <script>
+      $(function() {
+        var div = $('.box');
+        var width = div.width();
+        div.css('height', width);        
+    });
+    
+    </script> 
+    <script src="js/materialize.min.js"></script> 
+    <script src="js/snap.js"></script> 
+    <script src="js/jquery.smoothState.min.js"></script> 
+    <script src="js/sidebar.js"></script> 
+    <script src="js/functions.js"></script>
+  </body>
+</html>
